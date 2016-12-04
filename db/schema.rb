@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161031141134) do
+ActiveRecord::Schema.define(version: 20161204205235) do
+
+  create_table "chapters", force: :cascade do |t|
+    t.integer  "chapter_index"
+    t.string   "title"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "chars", force: :cascade do |t|
     t.string   "title"
@@ -18,6 +25,30 @@ ActiveRecord::Schema.define(version: 20161031141134) do
     t.string   "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "episodes", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "chapter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chapter_id"], name: "index_episodes_on_chapter_id"
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "episode_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["episode_id"], name: "index_pages_on_episode_id"
+  end
+
+  create_table "panels", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "page_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["page_id"], name: "index_panels_on_page_id"
   end
 
 end

@@ -6,4 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Char.create([{title: "Josh", route: "josh", url: "jessicajordan.de"},{title: "Kim", route: "kim", url: "jessicajordan.de"}])
+Char.create([{title: "Josh", route: "josh", url: "joshua"},{title: "Kim", route: "kim", url: "kim"}])
+
+chapters = Chapter.create([{chapter_index: 1, title: "Prodromos" }])
+episodes = Episode.create(title: 'Gone', chapter: chapters.first)
+pages = Page.create(title: 'Page 1', episode: episodes )
+
+panels = Panel.create(title: 'Panel 1', page: pages)
+
+
+
+
