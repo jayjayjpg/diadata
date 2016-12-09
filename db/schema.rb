@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20161204205235) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "chapters", force: :cascade do |t|
     t.integer  "chapter_index"
     t.string   "title"
@@ -32,7 +35,7 @@ ActiveRecord::Schema.define(version: 20161204205235) do
     t.integer  "chapter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["chapter_id"], name: "index_episodes_on_chapter_id"
+    t.index ["chapter_id"], name: "index_episodes_on_chapter_id", using: :btree
   end
 
   create_table "pages", force: :cascade do |t|
@@ -40,7 +43,7 @@ ActiveRecord::Schema.define(version: 20161204205235) do
     t.integer  "episode_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["episode_id"], name: "index_pages_on_episode_id"
+    t.index ["episode_id"], name: "index_pages_on_episode_id", using: :btree
   end
 
   create_table "panels", force: :cascade do |t|
@@ -48,7 +51,10 @@ ActiveRecord::Schema.define(version: 20161204205235) do
     t.integer  "page_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["page_id"], name: "index_panels_on_page_id"
+    t.index ["page_id"], name: "index_panels_on_page_id", using: :btree
   end
 
+  add_foreign_key "episodes", "chapters"
+  add_foreign_key "pages", "episodes"
+  add_foreign_key "panels", "pages"
 end
