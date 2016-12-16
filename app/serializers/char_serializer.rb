@@ -1,3 +1,5 @@
 class CharSerializer < ActiveModel::Serializer
-  attributes :id, :title, :route, :url
+  def attributes(*args)
+    object.attributes.symbolize_keys
+  end
 end

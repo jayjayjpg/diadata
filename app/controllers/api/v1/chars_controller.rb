@@ -46,6 +46,6 @@ class Api::V1::CharsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def char_params
-      params.require(:char).permit(:title, :route, :url)
+      params.require(:char).permit(:title, :route, :url, :head_shot, :full_view)
     end
 end
